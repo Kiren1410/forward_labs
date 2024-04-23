@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>VHS Recorder</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link
+      href="https://www.jqueryscript.net/css/jquerysctipttop.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="manage-audio.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/css/intlTelInput.css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <script src="./flag.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
+  </head>
+
+  <body onload="fnBrowserDetect()">
+    <h1></h1>
+    <div id="MAIN">
+      <h1>VHS VOICE RECORDER</h1>
+      <p class="lead">
+        Exploring physical and mental health through your voice.<br />Prevention
+        is better than cure…
+      </p>
+
+      <div class="recorder-instructions">
+        <p1>Instructions</p1>
+        <div class="step-1A">
+          <h2>Step 1 &#45; Find a Quiet Space</h2>
+          <p>
+            - Be sure to turn off the fan/air conditioner, otherwise it will
+            affect the test results.
+          </p>
+          <p>- Put your phone on silent mode.</p>
+        </div>
+
+        <div class="step-2A">
+          <h2>Step 2 &#45; Preparation Before Recording</h2>
+          <p>
+            - Please use the phone's microphone to record your voice, instead of
+            using headphone! ! !
+          </p>
+          <p>- Only click "Start Recording" when you have a stable internet.</p>
+        </div>
+
+        <div class="step-3A">
+          <h2>Step 3 &#45; Click "Start Recording"</h2>
+          <p>
+            - Hold your phone at a comfortable position and put your mouth close
+            to the microphone.
+          </p>
+          <p>
+            - Read the reading script below aloud at your normal speaking rate
+            until the progress bar reaches 100%.
+          </p>
+        </div>
+
+        <div class="step-4A">
+          <h2>Step 4 &#45; Click "Stop/Redo Recording"</h2>
+          <p>
+            - You can click "Stop Recording" if you would to cancel the
+            recording.
+          </p>
+          <p>
+            - You can check the recording through the player. If you are not
+            satisfied, you can click "Redo Recording".
+          </p>
+          <p>- After confirming the recording, click "Next".</p>
+        </div>
+
+        <div class="step-5A">
+          <h2>Step 5 &#45; Fill in Personal Profile</h2>
+          <p>
+            - Please provide true and complete information, otherwise it will
+            affect us to provide your physical and mental health report.
+          </p>
+        </div>
+
+        <div class="step-6A">
+          <h2>Step 6 &#45; Click "Upload Recording"</h2>
+          <p>- After filling the personal profile, click "Upload Recording".</p>
+          <p>
+            - The upload time depends on the internet speed, generally it takes
+            1-2 minutes.
+          </p>
+          <p>
+            - When "Your recording has been uploaded successfully. Thank you!"
+            pop up, it means it's done.
+          </p>
+          <p>- We will contact you within 24 hours.</p>
+        </div>
+      </div>
+
+      <div class="mic">
+        <select name="" id="micSelect"></select>
+
+        <select id="visSelect" class="hidden">
+          <option value="frequencybars">Bar</option>
+          <option value="sinewave">Wave</option>
+          <option value="circle">Circle</option>
+        </select>
+      </div>
+
+      <div id="main-block" class="hidden">
+        <h3>Personal Profile</h3>
+        <form action="/" name="google-sheet">
+          <hr />
+          <label id="icon" for="name"><i class="fas fa-user"></i></label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            required
+          />
+          <br />
+
+          <label id="icon" for="name"><i class="fas fa-envelope"></i></label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+          />
+          <br />
+
+          <label id="icon" for="name"><i class="fas fa-phone"></i></label>
+          <input type="tel" name="mobile" id="mobile" required />
+
+          <br />
+          <label id="icon" for="name"><i class="fas fa-calendar"></i></label>
+          <input
+            type="text"
+            name="dob"
+            id="dob"
+            placeholder="Date of Birth (DD/MM/YYYY)"
+            required
+          />
+
+          <div class="sex">
+            <label id="icon" for="name"
+              ><i class="fas fa-venus-mars"></i
+            ></label>
+            <input type="radio" value="Male" id="male" name="gender" />
+            <label for="male" class="radio">Male</label>
+            <input type="radio" value="Female" id="female" name="gender" />
+            <label for="female" class="radio">Female</label>
+          </div>
+
+          <label id="icon" for="name"><i class="fas fa-pills"></i></label>
+          Currently taking western medicine?
+          <br />
+          <div class="medicine">
+            <input type="radio" value="Yes" id="med_yes" name="med" />
+            <label for="med_yes" class="radio">Yes </label>
+            <input type="radio" value="No" id="med_no" name="med" />
+            <label for="med_no" class="radio"> No</label>
+          </div>
+          <br />
+
+          <label id="icon" for="name"><i class="fas fa-id-card"></i></label>
+          <input
+            type="text"
+            name="referral"
+            id="referral"
+            placeholder="Insert associate code (if any)"
+            required
+          />
+          <br />
+          <hr />
+        </form>
+      </div>
+
+      <div class="audio-controls">
+        <button id="submit" class="hidden">
+          Upload Recording <i class="fas fa-upload"></i>
+        </button>
+        <button id="next" class="hidden">
+          Next <i class="fas fa-caret-square-right"></i>
+        </button>
+      </div>
+
+      <div class="audio-controls">
+        <button id="record">
+          Start Recording <i class="fas fa-microphone"></i>
+        </button>
+        <button id="stop" class="hidden">
+          Stop Recording <i class="fas fa-microphone-slash"></i>
+        </button>
+        <button id="redo" class="hidden">
+          Redo Recording <i class="fas fa-microphone"></i>
+        </button>
+      </div>
+
+      <div class="audio-controls">
+        <button id="pause" class="hidden">
+          Pause Recording<i class="fas fa-microphone"></i>
+        </button>
+      </div>
+
+      <div id="reminder">
+        <h4 id="remind" class="hidden">
+          Your decibel is higher than 50.
+          <br />
+          You can start your recording when decibel is lower than 50
+        </h4>
+      </div>
+
+      <div id="viz">
+        <canvas id="analyser" width="1024" height="200" class="hidden"></canvas>
+        <main id="decibel">
+          <h2><span id="db">-</span> dB</h2>
+          <div id="visuals"></div>
+        </main>
+        <div class="inputs hidden">
+          <div class="input">
+            <label for="offset"
+              >Offset value: <span id="offset_value">-</span> dB</label
+            >
+            <br />
+            <input
+              type="range"
+              min="-30"
+              max="70"
+              value="30"
+              class="slider"
+              id="offset"
+            />
+          </div>
+          <div class="input">
+            <label for="refresh_rate"
+              >Refresh every: <span id="refresh_value">-</span> ms</label
+            >
+            <br />
+            <input
+              type="range"
+              min="100"
+              max="2000"
+              value="500"
+              class="slider"
+              id="refresh_rate"
+            />
+          </div>
+        </div>
+        <div>
+          <button id="analyze_button">Analyze Decibel</button>
+        </div>
+      </div>
+
+      <div id="progress" class="hidden">
+        <div id="p_bar" class="bar" style="width: 0%">
+          <p id="p_percent" class="percent">0%</p>
+        </div>
+      </div>
+
+      <div class="audio-playback">
+        <audio id="audio" controls class="hidden"></audio>
+      </div>
+
+      <div id="script">
+        <div class="reading-script">
+          <h3>Reading Script</h3>
+          <div class="step-1A">
+            The vision of Mind Associates (MindA) is to bring the awareness and
+            convenience of Vocal Biomarker technology to the world through our
+            associates.
+            <br /><br />
+            MindA offers an innovative online software solution that measures
+            patterns in voice and brain frequencies, and translates these into
+            various degrees of emotional well-being and physical health.
+            <br /><br />
+            The core technology was developed in Netherlands based on studies in
+            Physics, Quantum Physics, Biochemistry, Epigenetics, Psychology and
+            other research fields from different universities all around the
+            world. Using AI and Big Data technology, the software is able to
+            connect vocal vibrations and brain waves to emotions. The system
+            identifies and determines the underlying emotional and pyhsical
+            states by relating the vocal input to the algorithms of specific
+            processes in different parts of the brain.
+            <br /><br />
+            The software is able to measure your emotional intelligence and
+            physical health, and generate your personalized reports. The
+            Emotional health report shows your stress level, emotional states,
+            subconscious, and inner potentials. It will also reveal constructive
+            and restrictive behaviours, characteristics and personalities, and
+            even learning and communication sensories. The physical health
+            report shows your potential health risks for early management.
+            <br /><br />
+            Client Testimonial 1: An amazing tool to know and understand
+            yourself, your potential, and your weakness. It can help to handle
+            your stress and relax your mind.
+            <br /><br />
+            Client Testimonial 2: This is a useful tool for assisting personal
+            development professionals to understand their clients’ mental
+            processes and behaviours that are important for planning a therapy
+            or designing interventions that can help the clients. The analysis
+            via voice can serve as another helpful source for mental health
+            practitioners to triangulate the client's psychology in order to
+            have a more accurate diagnosis.
+            <br /><br />
+            ***Repeat reading until the progress bar reaches 100%.
+            <br /><br /><br /><br /><br /><br />
+          </div>
+        </div>
+      </div>
+
+      <svg class="arrow">
+        <path id="a1" d="M0 0 L15 22 L30 0"></path>
+      </svg>
+
+      <!-- <div id="transbox_1" class="hidden">
+      <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <span>Processing...</span>
+      </div>
+    </div>
+  </div> -->
+
+      <div id="transbox_2" class="hidden">
+        <div class="wrapper">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+          <span>Uploading...</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("scroll", handleScroll);
+      var rootElement = document.documentElement;
+
+      // function otherReferral() {
+      //   var referralOption = document.getElementById("referral").value;
+
+      //   if (referralOption == "Other") {
+      //     $("#oth_referral").removeClass("hidden");
+      //   }
+      //   else {
+      //     $("#oth_referral").addClass("hidden");
+      //   }
+      // }
+
+      function handleScroll() {
+        // Do something on scroll
+        var scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+        if (rootElement.scrollTop / scrollTotal > 0.95) {
+          // Show button
+          document.getElementById("a1").classList.add("hidden");
+        } else if (rootElement.scrollTop / scrollTotal < 0.9) {
+          // Hide button
+          document.getElementById("a1").classList.remove("hidden");
+        }
+      }
+
+      function fnBrowserDetect() {
+        var parser = new UAParser();
+        var browserName = Object.values(
+          parser.getResult().browser
+        )[0].toLowerCase();
+        var os = Object.values(parser.getResult().os)[0].toLowerCase();
+        var ver = Object.values(parser.getResult().os)[1].toLowerCase();
+
+        //document.querySelector("h1").innerText = browserName;
+
+        /*if ((browserName.match(/edge/i))||(browserName.match(/chrome/i))||(browserName.match(/webview/i))) {        
+        $("#MAIN").addClass("hidden")
+        //document.querySelector("h1").innerText = "Sorry, your browser is not supported!\n For the best experience, please use any of these supported browsers:\n Firefox, Safari, QQ or WeChat.";
+        alert('Sorry, your browser is not supported!\n For the best experience, please use any of these supported browsers:\n Firefox, Safari, QQ or WeChat.')
+        location.replace("https://"+window.location.hostname)
+      }*/
+
+        if (browserName.match(/webview/i)) {
+          $("#MAIN").addClass("hidden");
+          //document.querySelector("h1").innerText = "Sorry, your browser is not supported!\n For the best experience, please use any of these supported browsers:\n Firefox, Safari, QQ or WeChat.";
+          alert(
+            "Sorry, your browser is not supported!\n For the best experience, please use any of these supported browsers:\n Chrome, Firefox, Safari, QQ or WeChat."
+          );
+          location.replace("https://" + window.location.hostname);
+        }
+
+        if (os.match(/android/i) && parseInt(ver) < 10) {
+          $("#MAIN").addClass("hidden");
+          //document.querySelector("h1").innerText = "Sorry, your Android version is not supported!\n Currently the system supports Android versions 10.0 and above.";
+          alert(
+            "Sorry, your Android version is not supported!\n Currently the system supports Android versions 10.0 and above."
+          );
+          location.replace("https://" + window.location.hostname);
+        }
+
+        if (os.match(/mac os/i) && parseInt(ver) < 10) {
+          $("#MAIN").addClass("hidden");
+          //document.querySelector("h1").innerText = "Sorry, your Mac OS version is not supported!\n Currently the system supports Mac OS versions 10 and above.";
+          alert(
+            "Sorry, your Mac OS version is not supported!\n Currently the system supports Mac OS versions 10 and above."
+          );
+          location.replace("https://" + window.location.hostname);
+        }
+
+        if (os.match(/ios/i) && parseInt(ver) < 14) {
+          $("#MAIN").addClass("hidden");
+          //document.querySelector("h1").innerText = "Sorry, your iOS version is not supported!\n Currently the system supports iOS versions 14 and above.";
+          alert(
+            "Sorry, your iOS version is not supported!\n Currently the system supports iOS versions 14 and above."
+          );
+          location.replace("https://" + window.location.hostname);
+        }
+
+        //Get/Set associate code
+        let a_code = getCookie("assoc_code");
+        const url = window.location.href;
+        console.log(url);
+        console.log(a_code);
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.has("rf")) {
+          const rf = urlParams.get("rf");
+          console.log(rf);
+          setCookie("assoc_code", rf, 365);
+          document.getElementById("referral").value = rf;
+          document.getElementById("referral").readOnly = true;
+          console.log("1");
+        } else if (a_code != "") {
+          setCookie("assoc_code", a_code, 365);
+          document.getElementById("referral").value = a_code;
+          document.getElementById("referral").readOnly = true;
+          console.log("2");
+        } else {
+          console.log("3");
+        }
+      }
+
+      function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+    </script>
+
+    <script src="./mobile_script.js"></script>
+    <script src="./script_en.js?version = 2.07"></script>
+    <script src="./wave-resampler.js"></script>
+    <script src="./jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src="https://unpkg.com/libphonenumber-js/bundle/libphonenumber-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.20/ua-parser.min.js"></script>
+  </body>
+</html>
